@@ -54,44 +54,43 @@ class ImportAfiliados extends Command
 
         $insert = $this->insert($response);
 
-        // return $insert;
+        return $insert;
 
     }
 
     private function insert($response){
-        // $i = 0;
-        // if($response['body']['status'] === 'success'){
-        //     foreach($response['body']['data'] as $value){
-        //         $insert = Afiliados::firstOrCreate([
-        //             'Matricula' =>  $value['Matricula']],
-        //             [
-        //                 'Apellidos' => $value['Apellidos'],
-        //                 'Nombres' => $value['Nombres'],
-        //                 'Profesion' => $value['Profesion'],
-        //                 'FechaNacimiento' => $value['FechaNacimiento'],
-        //                 'LugarNacimiento' => $value['LugarNacimiento'],
-        //                 'Sexo' => $value['Sexo'],
-        //                 'EstadoCivil' => $value['EstadoCivil'],
-        //                 'Domicilio' => $value['Domicilio'],
-        //                 'Provicia' => $value['Provicia'],
-        //                 'Localidad' => $value['Localidad'],
-        //                 'Departamento' => $value['Departamento'],
-        //                 'Municipio' => $value['Municipio'],
-        //                 'Telefono' => $value['Telefono'],
-        //                 'Email' => $value['Email'],
-        //                 'FechaSolicitud' => $value['FechaSolicitud'],
-        //                 'EstadoAfiliacion' => $value['EstadoAfiliacion'],
-        //             ]
-        //         );
-        //         $insert->wasRecentlyCreated ? $i++ : '';
-        //     }
-        //     $result = 'se insertaron '.$i.' registros';
-        // }else{
-        //     $result = 'Fallo la conexión a la API';
-        // }
+        $i = 0;
+        if($response['body']['status'] === 'success'){
+            foreach($response['body']['data'] as $value){
+                $insert = Afiliados::firstOrCreate([
+                    'Matricula' =>  $value['Matricula']],
+                    [
+                        'Apellidos' => $value['Apellidos'],
+                        'Nombres' => $value['Nombres'],
+                        'Profesion' => $value['Profesion'],
+                        'FechaNacimiento' => $value['FechaNacimiento'],
+                        'LugarNacimiento' => $value['LugarNacimiento'],
+                        'Sexo' => $value['Sexo'],
+                        'EstadoCivil' => $value['EstadoCivil'],
+                        'Domicilio' => $value['Domicilio'],
+                        'Provicia' => $value['Provicia'],
+                        'Localidad' => $value['Localidad'],
+                        'Departamento' => $value['Departamento'],
+                        'Municipio' => $value['Municipio'],
+                        'Telefono' => $value['Telefono'],
+                        'Email' => $value['Email'],
+                        'FechaSolicitud' => $value['FechaSolicitud'],
+                        'EstadoAfiliacion' => $value['EstadoAfiliacion'],
+                    ]
+                );
+                $insert->wasRecentlyCreated ? $i++ : '';
+            }
+            $result = 'se insertaron '.$i.' registros';
+        }else{
+            $result = 'Fallo la conexión a la API';
+        }
         
-        // Log::channel('afiliados')->notice($result);
-        // return $result;
-        Log::channel('afiliados')->notice('prueba');
+        Log::channel('afiliados')->notice($result);
+        return $result;
     }
 }
