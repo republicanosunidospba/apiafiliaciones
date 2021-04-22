@@ -60,6 +60,7 @@ class ImportAfiliados extends Command
 
     private function insert($response){
         $i = 0;
+        Log::channel('afiliados')->notice('Inicia Proceso de Importación');
         if($response['body']['status'] === 'success'){
             foreach($response['body']['data'] as $value){
                 $insert = Afiliados::firstOrCreate([
