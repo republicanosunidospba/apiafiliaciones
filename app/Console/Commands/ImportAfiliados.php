@@ -46,7 +46,7 @@ class ImportAfiliados extends Command
 
         $url = "https://afiliate.republicanosunidos.com.ar/datosapi/afiliados";
         $header = [
-			'Authorization' => 'a64dddbc5d1018282ac98281e4a03278d6443a66aa2f9:90cf741494f0da46b632f4f5872545c5401'
+			'Authorization' => 'a64dddbc5d1018282ac98281e4a03278d6443a66aa2f9:80cf741494f0da46b632f4f5872545c5401'
 		];
 
         $result = $this->api->request($url, 'GET', $header, []);
